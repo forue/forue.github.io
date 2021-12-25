@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <title> adb 常用命令</title>
+</head>
+<body class="is-preload">
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo">Massively</a>
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <!--<ul class="links">
+                <li><a href="index.html">This is Massively</a></li>
+                <li><a href="generic.html">Generic Page</a></li>
+                <li class="active"><a href="elements.html">Elements Reference</a></li>
+            </ul>-->
+            <ul class="icons">
+                <li><a href="#" class="icon brands fa-twitter"><span class="label" >Twitter</span></a></li>
+                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+            </ul>
+        </nav>
+
+        <div id="main">
+
+            <section class="post">
+                <header class="major">
+                    <h1> ADB <br />常用命令</h1>
+                </header>
+
+                <h2> adb 简介</h2>
+                <p>
+
+                </p>
+                <hr />
+
+                <h2>基本 adb 命令</h2>
+                <p>
+                    查看连接的设备 <code>adb devices</code><br />
+                    重启设备 <code>adb reboot [recovery|fastboot|bootloader]</code> <br />
+                    将文件从设备复制到电脑<code>adb pull &lt;device_file_path&gt;</code><br />
+                    将文件从电脑复制到设备<code>adb push &lt;computer_file_path&gt; &lt;device_file_path&gt;</code><br />
+                    进入shell命令行<code>adb shell</code><br />
+                    获取root权限<code>adb root</code><br />
+                    安装应用<code>adb install &lt;apk_path&gt;</code>
+                </p>
+                <hr />
+                <h2>进阶 adb 命令</h2>
+                <h3>getprop &amp; setprop</h3>
+                <p>
+                    <code>adb shell getprop</code><br />
+                    <code>adb shell setprop &lt;prop&gt; &lt;value&gt;</code>
+                </p>
+                <h3>log capture</h3>
+                <p>
+                    live log in screen<code>adb logcat </code> <br />
+                    get a bugreport package <br />
+                    <code>adb bugreport</code> <br />
+                    <code>adb shell bugreport</code>
+                </p>
+                <h3>am (activity management)</h3>
+                    <h4>用法</h4>
+                    <pre style="background:#f1f1f1">
+usage:  am [subcommand] [option]
+usage:  am start [-D] [-W] [-P &lt;FILE&gt;] [--start-profiler &lt;FILE&gt;]
+            [--sampling INTERVAL] [-R COUNT] [-S] [--opengl-trace]
+            [--user &lt;USER_ID&gt; | current] &lt;INTENT&gt;
+        am startservice [--user &lt;USER_ID&gt; | current] &lt;INTENT&gt;
+        am stopservice [--user &lt;USER_ID&gt; | current] &lt;INTENT&gt;
+        am force-stop [--user &lt;USER_ID&gt; | all | current] &lt;PACKAGE&gt;
+        am kill [--user &lt;USER_ID&gt; | all | current] &lt;PACKAGE&gt;
+        am kill-all
+        am broadcast [--user &lt;USER_ID&gt; | all | current] &lt;INTENT&gt;
+        am instrument [-r] [-e &lt;NAME&gt; &lt;VALUE&gt;] [-p &lt;FILE&gt;] [-w]
+                [--user &lt;USER_ID&gt; | current]
+                [--no-window-animation] [--abi &lt;ABI>] &lt;COMPONENT&gt;
+        am profile start [--user &lt;USER_ID&gt; current] [--sampling INTERVAL] &lt;PROCESS> &lt;FILE&gt;
+        am profile stop [--user &lt;USER_ID&gt; current] [&lt;PROCESS&gt;]
+        am dumpheap [--user &lt;USER_ID&gt; current] [-n] &lt;PROCESS&gt; &lt;FILE&gt;
+        am set-debug-app [-w] [--persistent] &lt;PACKAGE&gt;
+        am clear-debug-app
+        am set-watch-heap &lt;PROCESS> &lt;MEM-LIMIT&gt;
+        am clear-watch-heap
+        am monitor [--gdb &lt;port&gt;]
+        am hang [--allow-restart]
+        am restart
+        am idle-maintenance
+        am screen-compat [on|off] &lt;PACKAGE&gt;
+        am package-importance &lt;PACKAGE&gt;
+        am to-uri [INTENT]
+        am to-intent-uri [INTENT]
+        am to-app-uri [INTENT]
+        am switch-user &lt;USER_ID&gt;
+        am start-user &lt;USER_ID&gt;
+        am stop-user [-w] &lt;USER_ID&gt;
+        am stack start &lt;DISPLAY_ID&gt; &lt;INTENT&gt;
+        am stack movetask &lt;TASK_ID&gt; &lt;STACK_ID> [true|false]
+        am stack resize &lt;STACK_ID&gt; &lt;LEFT,TOP,RIGHT,BOTTOM&gt;
+        am stack split &lt;STACK_ID&gt; &lt;v|h&gt; [INTENT]
+        am stack list
+        am stack info &lt;STACK_ID&gt;
+        am task lock &lt;TASK_ID&gt;
+        am task lock stop
+        am task resizeable &lt;TASK_ID&gt; [true|false]
+        am task resize &lt;TASK_ID&gt; &lt;LEFT,TOP,RIGHT,BOTTOM&gt;
+        am get-config
+        am set-inactive [--user &lt;USER_ID&gt;] &lt;PACKAGE&gt; true|false
+        am get-inactive [--user &lt;USER_ID&gt;] &lt;PACKAGE&gt;
+        am send-trim-memory [--user &lt;USER_ID&gt;] &lt;PROCESS&gt;
+                [HIDDEN|RUNNING_MODERATE|BACKGROUND|RUNNING_LOW|MODERATE|RUNNING_CRITICAL|COMPLETE]
+                    </pre>
+                    <h4>Intent 参数</h4>
+                    <pre style="background:#f1f1f1">
+&lt;INTENT&gt; specifications include these flags and arguments:
+    [-a &lt;ACTION&gt;] [-d &lt;DATA_URI&gt;] [-t &lt;MIME_TYPE&gt;]
+    [-c &lt;CATEGORY&gt; [-c &lt;CATEGORY&gt;] ...]
+    [-e|--es &lt;EXTRA_KEY&gt; &lt;EXTRA_STRING_VALUE&gt; ...]
+    [--esn &lt;EXTRA_KEY&gt; ...]
+    [--ez &lt;EXTRA_KEY&gt; &lt;EXTRA_BOOLEAN_VALUE&gt; ...]
+    [--ei &lt;EXTRA_KEY&gt; &lt;EXTRA_INT_VALUE&gt; ...]
+    [--el &lt;EXTRA_KEY&gt; &lt;EXTRA_LONG_VALUE&gt; ...]
+    [--ef &lt;EXTRA_KEY&gt; &lt;EXTRA_FLOAT_VALUE&gt; ...]
+    [--eu &lt;EXTRA_KEY&gt; &lt;EXTRA_URI_VALUE&gt; ...]
+    [--ecn &lt;EXTRA_KEY&gt; &lt;EXTRA_COMPONENT_NAME_VALUE&gt;]
+    [--eia &lt;EXTRA_KEY&gt; &lt;EXTRA_INT_VALUE&gt;[,&lt;EXTRA_INT_VALUE...]]
+        (mutiple extras passed as Integer[])
+    [--eial &lt;EXTRA_KEY&gt; &lt;EXTRA_INT_VALUE&gt;[,&lt;EXTRA_INT_VALUE...]]
+        (mutiple extras passed as List&lt;Integer&gt;)
+    [--ela &lt;EXTRA_KEY&gt; &lt;EXTRA_LONG_VALUE&gt;[,&lt;EXTRA_LONG_VALUE...]]
+        (mutiple extras passed as Long[])
+    [--elal &lt;EXTRA_KEY&gt; &lt;EXTRA_LONG_VALUE&gt;[,&lt;EXTRA_LONG_VALUE...]]
+        (mutiple extras passed as List&lt;Long&gt;)
+    [--efa &lt;EXTRA_KEY&gt; &lt;EXTRA_FLOAT_VALUE&gt;[,&lt;EXTRA_FLOAT_VALUE...]]
+        (mutiple extras passed as Float[])
+    [--efal &lt;EXTRA_KEY&gt; &lt;EXTRA_FLOAT_VALUE&gt;[,&lt;EXTRA_FLOAT_VALUE...]]
+        (mutiple extras passed as List&lt;Float&gt;)
+    [--esa &lt;EXTRA_KEY&gt; &lt;EXTRA_STRING_VALUE&gt;[,&lt;EXTRA_STRING_VALUE...]]
+        (mutiple extras passed as String[]; to embed a comma into a string,
+         escape it using "\,")
+    [--esal &lt;EXTRA_KEY&gt; &lt;EXTRA_STRING_VALUE&gt;[,&lt;EXTRA_STRING_VALUE...]]
+        (mutiple extras passed as List&lt;String&gt;; to embed a comma into a string,
+         escape it using "\,")
+    [--grant-read-uri-permission] [--grant-write-uri-permission]
+    [--grant-persistable-uri-permission] [--grant-prefix-uri-permission]
+    [--debug-log-resolution] [--exclude-stopped-packages]
+    [--include-stopped-packages]
+    [--activity-brought-to-front] [--activity-clear-top]
+    [--activity-clear-when-task-reset] [--activity-exclude-from-recents]
+    [--activity-launched-from-history] [--activity-multiple-task]
+    [--activity-no-animation] [--activity-no-history]
+    [--activity-no-user-action] [--activity-previous-is-top]
+    [--activity-reorder-to-front] [--activity-reset-task-if-needed]
+    [--activity-single-top] [--activity-clear-task]
+    [--activity-task-on-home]
+    [--receiver-registered-only] [--receiver-replace-pending]
+    [--selector]
+    [&lt;URI&gt; | &lt;PACKAGE&gt; | &lt;COMPONENT&gt;]
+                    </pre>
+                <h3>pm (package management)</h3>
+                <h3>dumpsys</h3>
+                    <h4>window</h4>
+                    <h4>activity</h4>
+                    <h4>surfaceflinger</h4>
+                    <h4>service</h4>
+                    <h4>battery</h4>
+                    <h4>storage</h4>
+                    <h4>package</h4>
+                    <h4>netstats</h4>
+                <h3>录屏与截图</h3>
+                <h3>字符输入</h3>
+                <h3>屏幕交互</h3>
+            </section >
+
+        </div >
+
+    </div >
+
+        < !--Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
