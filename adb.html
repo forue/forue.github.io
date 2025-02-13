@@ -6,11 +6,37 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/adb.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <title> adb 常用命令</title>
 </head>
 <body class="is-preload">
-    <div id="wrapper">
+    <!-- 菜单图标 -->
+    <a class="menu-icon">Index</a>
+
+    <!-- 导航容器 -->
+    <nav class="nav-container">
+        <a class="close-btn hidden"></a>
+        <ul class="nav-menu">
+            <li><a href="#简介" class="nav-link">adb 简介</a></li>
+            <li><a href="#基本adb" class="nav-link">基本 adb 命令</a></li>
+            <li>
+                <a href="#进阶adb" class="toggle nav-link">进阶 adb 命令 <span class="arrow">&#9654;</span></a>
+                <ul class="submenu">
+                    <li><a href="#prop" class="nav-link-sub">系统属性</a></li>
+                    <li><a href="#logcapture" class="nav-link-sub">log capture</a></li>
+                    <li><a href="#am" class="nav-link-sub">am (activity management)</a></li>
+                    <li><a href="#pm" class="nav-link-sub">pm (package management)</a></li>
+                    <li><a href="#dumpsys" class="nav-link-sub">dumpsys</a></li>
+                    <li><a href="#录屏与截图" class="nav-link-sub">录屏与截图</a></li>
+                    <li><a href="#输入" class="nav-link-sub">输入</a></li>
+                    <li><a href="#屏幕交互" class="nav-link-sub">屏幕交互</a></li>
+                    <li><a href="#性能分析" class="nav-link-sub">性能分析</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="wrapper" class="main-content">
 
         <!-- Header -->
         <header id="header">
@@ -38,14 +64,13 @@
                 <header class="major">
                     <h1> ADB <br />常用命令</h1>
                 </header>
-
-                <h2> adb 简介</h2>
+                <h2 id="简介"> adb 简介</h2>
                 <p>
 
                 </p>
                 <hr />
 
-                <h2>基本 adb 命令</h2>
+                <h2 id="基本adb">基本 adb 命令</h2>
                 <p>
                     查看连接的设备 <code>adb devices</code><br />
                     重启设备 <code>adb reboot [recovery|fastboot|bootloader]</code> <br />
@@ -56,20 +81,20 @@
                     安装应用<code>adb install &lt;apk_path&gt;</code>
                 </p>
                 <hr />
-                <h2>进阶 adb 命令</h2>
-                <h3>getprop &amp; setprop</h3>
+                <h2 id="进阶adb">进阶 adb 命令</h2>
+                <h3 id="prop">getprop &amp; setprop</h3>
                 <p>
                     <code>adb shell getprop</code><br />
                     <code>adb shell setprop &lt;prop&gt; &lt;value&gt;</code>
                 </p>
-                <h3>log capture</h3>
+                <h3 id="logcapture">log capture</h3>
                 <p>
                     live log in screen<code>adb logcat </code> <br />
                     get a bugreport package <br />
                     <code>adb bugreport</code> <br />
                     <code>adb shell bugreport</code>
                 </p>
-                <h3>am (activity management)</h3>
+                <h3 id="am">am (activity management)</h3>
                 <h4>用法</h4>
                 <pre style="background:#f1f1f1">
 usage:  am [subcommand] [option]
@@ -167,7 +192,7 @@ usage:  am start [-D] [-W] [-P &lt;FILE&gt;] [--start-profiler &lt;FILE&gt;]
     [--selector]
     [&lt;URI&gt; | &lt;PACKAGE&gt; | &lt;COMPONENT&gt;]
                     </pre>
-                <h3>pm (package management)</h3>
+                <h3 id="pm">pm (package management)</h3>
                 <p>
                     查看应用安装路径 <code>pm path &lt;package name&gt;</code><br>
                     查看已安装应用包名<code>pm list packages</code><br>
@@ -178,7 +203,7 @@ usage:  am start [-D] [-W] [-P &lt;FILE&gt;] [--start-profiler &lt;FILE&gt;]
                     清除应用缓存<code>pm clear &lt;package name&gt;</code><br>
                     当前设备支持的libs<code>list libraries</code><br>
                 </p>
-                <h3>dumpsys</h3>
+                <h3 id="dumpsys">dumpsys</h3>
                 <h4>window</h4>
                 <p>
                     屏幕参数<code>dumpsys window display</code>
@@ -190,25 +215,25 @@ usage:  am start [-D] [-W] [-P &lt;FILE&gt;] [--start-profiler &lt;FILE&gt;]
                 <h4>storage</h4>
                 <h4>package</h4>
                 <h4>netstats</h4>
-                <h3>录屏与截图</h3>
+                <h3 id="录屏与截图">录屏与截图</h3>
                 <p>
                     截图保存到电脑<code>adb exec-out screencap -p > screenshot.png</code><br>
                     截图保存到设备<code>adb shell screencap -p /sdcard/screenshot.png</code><br>
                     录屏<code>adb shell screenrecord  /sdcard/screenrecord.mp4</code>
                 </p>
-                <h3>输入</h3>
+                <h3 id="输入">输入</h3>
                 <p>
                     输入文字 <code>input text &lt;text&gt;</code><br/>
                     模拟按键短按<code>input keyevent &lt;keycode&gt;</code><br/>
                     模拟按键长按<code>input keyevent --longpress &lt;keycode&gt;</code><br/>
                 </p>
-                <h3>屏幕交互</h3>
+                <h3 id="屏幕交互">屏幕交互</h3>
                 <p>
                     模拟屏幕点击<code>input tap x y</code><br />
                     模拟屏幕滑动<code>input swipe x1 y1 x2 y2 duration</code><br />
                     模拟屏幕长按一秒<code>input swipe x1 y1 x1 y1 1000</code><br />
                 </p>
-                <h3>性能分析</h3>
+                <h3 id="性能分析">性能分析</h3>
                 <p>
                     查看设备cpu和内存占用情况<code>top</code><br>
                     查询各进程内存使用情况<code>procrank</code><br>
@@ -217,18 +242,16 @@ usage:  am start [-D] [-W] [-P &lt;FILE&gt;] [--start-profiler &lt;FILE&gt;]
                     ANR日志路径<code>/data/anr/</code>
                 </p>
             </section>
-
         </div >
 
-    </div >
-
-        < !--Scripts -->
-            <script src="assets/js/jquery.min.js"></script>
+    <!--Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/adb.js"></script>
 </body>
 </html>

@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+h1, h2, h3, h4 {
+    text-transform: none;
+}
+
+/* 桌面端样式 */
+@media (min-width: 769px) {
+    .menu-icon,
+    .close-btn {
+        display: none !important;
+    }
+
+    .nav-container {
+        position: fixed;
+        left: 0;
+        top: 20px;
+        bottom: 20px;
+        width: 250px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 0 15px 15px 0;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+        z-index: 1000;
+    }
+
+    .nav-container ul {
+        list-style-type: none;
+    }
+
+    .main-content {
+        margin-left: 270px;
+        max-width: calc(100% - 270px);
+        padding: 20px;
+    }
+
+    .nav-link {
+        color: #fff !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        display: block;
+        padding: 15px 25px;
+        text-decoration: none;
+        transition: 0.3s;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 14px;
+    }
+
+    .nav-link-sub {
+        color: #fff !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        display: block;
+        padding: 15px 25px;
+        text-decoration: none;
+        transition: 0.3s;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 12px;
+    }
+
+    .submenu {
+        display: none; /* Initially hide submenus */
+        padding-left: 20px; /* Indent submenus */
+    }
+}
+
+/* 移动端样式 */
+@media (max-width: 768px) {
+    .nav-link {
+        color: #333;
+        display: block;
+        padding: 15px 25px;
+        text-decoration: none;
+        transition: 0.3s;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 14px;
+    }
+
+    .nav-link-sub {
+        color: #333;
+        display: block;
+        padding: 15px 25px;
+        text-decoration: none;
+        transition: 0.3s;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 12px;
+    }
+    .nav-container ul {
+        list-style-type: none;
+    }
+    .submenu {
+        display: none; /* Initially hide submenus */
+        padding-left: 20px; /* Indent submenus */
+    }
+    .menu-icon {
+        display: block;
+        position: fixed;
+        z-index: 1001;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 1px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        top: 3.75em; /* 同步下移菜单图标 */
+        right: 0.75em;
+        font-family: "Source Sans Pro", Helvetica, sans-serif;
+        font-size: 0.9rem;
+        font-weight: 900;
+        letter-spacing: 0.075em;
+        padding: 0.075rem 0.85rem;
+    }
+
+    .nav-container {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border-left: 1px solid rgba(0, 0, 0, 0.1);
+        transition: 0.6s;
+        z-index: 10002;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container.active {
+        right: 0;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 0.3em;
+        right: 0.9em;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #666;
+        font-family: "Source Sans Pro", Helvetica, sans-serif;
+        font-size: 1.25rem;
+        font-weight: 900;
+        letter-spacing: 0.075em;
+    }
+
+    .main-content {
+        padding: 80px 20px 20px; /* 增加顶部内边距 */
+    }
+
+    .nav-menu {
+        padding-top: 80px; /* 增加顶部间距 */
+    }
+}
+
+/* 通用样式 */
+.nav-menu {
+    list-style: none;
+}
+
+.nav-link:hover {
+    background: rgba(0, 0, 0, 0.03);
+    color: #007bff;
+    padding-left: 30px;
+}
+
+.menu-icon::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    text-transform: none !important;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f0c9';
+    margin-right: 0.5rem;
+}
+
+.close-btn::before {
+    content: "\f00d";
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    text-transform: none !important;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+.hidden {
+    display: none;
+}
