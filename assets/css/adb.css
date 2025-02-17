@@ -28,6 +28,7 @@ h1, h2, h3, h4 {
         border: 1px solid rgba(0, 0, 0, 0.1);
         padding: 20px 0;
         z-index: 1000;
+        overflow-y: auto;
     }
 
     .nav-container ul {
@@ -126,6 +127,7 @@ h1, h2, h3, h4 {
         transition: 0.6s;
         z-index: 10002;
         box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
     }
 
     .nav-container.active {
